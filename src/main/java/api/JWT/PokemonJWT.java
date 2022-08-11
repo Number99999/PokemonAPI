@@ -16,8 +16,12 @@ public class PokemonJWT {
     private final String header = "pokemon";
     public String createJWT(Pokemon pokemon)
     {
+        Date now = new Date();
+        Date expiryDate = new Date(now.getTime()+jwt_exprition);
         String jwt = Jwts.builder()
                 .setSubject(pokemon.toString())
+                .setIssuedAt(now)
+                .setExpiration(expiryDate)
                 .signWith(SignatureAlgorithm.HS512, jwt_secret)
                 .compact();
         return jwt;

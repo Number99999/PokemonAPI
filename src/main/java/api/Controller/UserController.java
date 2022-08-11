@@ -11,12 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 public class UserController {
@@ -54,6 +55,27 @@ public class UserController {
     public List<Pokemon> RefreshToke() {
         List<Pokemon> list = pokemonService.getAllPokemon();
         return list;
+    }
+
+    @RequestMapping(value = "/account-asset")
+    public User account() {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        User user = userService.findUserByUsername(username);
+
+        List<Pokemon> pokemonList = pokemonService.getAllPokemon();
+        Set<Pokemon> pokemonSet = new HashSet<>();
+        for(Pokemon p: pokemonList)
+        {
+            pokemonSet.add(p);
+        }
+        user.setListPokemon(pokemonSet);
+
+        userService.deleteById(user.getId());
+        userService.addUser(user);
+        return user;
     }
 
     @RequestMapping(value = "/refresh-token", method = RequestMethod.GET)

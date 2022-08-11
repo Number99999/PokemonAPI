@@ -1,9 +1,12 @@
 package api.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -14,6 +17,16 @@ public class Pokemon {
     private String name;
 
     private int hp, atk, def, speed, total;
+    @ManyToMany(mappedBy = "listPokemon")
+    private Set<User> listUser;
+
+    public Set<User> getListUser() {
+        return listUser;
+    }
+
+    public void setListUser(Set<User> listUser) {
+        this.listUser = listUser;
+    }
 
     public Pokemon(int id, String name, int hp, int atk, int def, int speed, int total) {
         this.id = id;
