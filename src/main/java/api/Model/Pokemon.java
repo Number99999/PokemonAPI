@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Data
+//@Data
 @NoArgsConstructor
 public class Pokemon {
     @Id
@@ -17,16 +17,16 @@ public class Pokemon {
     private String name;
 
     private int hp, atk, def, speed, total;
-    @ManyToMany(mappedBy = "listPokemon")
-    private Set<User> listUser;
+//    @ManyToMany(mappedBy = "listPokemon")
+//    private Set<User> listUser;
 
-    public Set<User> getListUser() {
-        return listUser;
-    }
-
-    public void setListUser(Set<User> listUser) {
-        this.listUser = listUser;
-    }
+//    public Set<User> getListUser() {
+//        return listUser;
+//    }
+//
+//    public void setListUser(Set<User> listUser) {
+//        this.listUser = listUser;
+//    }
 
     public Pokemon(int id, String name, int hp, int atk, int def, int speed, int total) {
         this.id = id;

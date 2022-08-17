@@ -1,15 +1,11 @@
 package api.Model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Data;
-
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
 @Entity
-@Data
+//@Data
 public class User {
     @Id
     @GeneratedValue
@@ -18,23 +14,23 @@ public class User {
     private int rank, coin, subcoin, score, pets;
     private String phone, email, walletId;
     private String otp;
-    @ManyToMany
-    @JoinTable(name = "user_pokemon",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "pokemon_id"))
-    private Set<Pokemon> listPokemon;
+//    @ManyToMany
+//    @JoinTable(name = "user_pokemon",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "pokemon_id"))
+//    private List<Pokemon> listPokemon;
 
     public User() {
 
     }
 
-    public Set<Pokemon> getListPokemon() {
-        return listPokemon;
-    }
-
-    public void setListPokemon(Set<Pokemon> listPokemon) {
-        this.listPokemon = listPokemon;
-    }
+//    public List<Pokemon> getListPokemon() {
+//        return listPokemon;
+//    }
+//
+//    public void setListPokemon(List<Pokemon> listPokemon) {
+//        this.listPokemon = listPokemon;
+//    }
 
     public User(String walletId, String username, String password) {
         this.username = username;
