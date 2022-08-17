@@ -106,7 +106,7 @@ public class UserController {
         return "true";
     }
 
-    @RequestMapping(value = "/update-info", method = RequestMethod.POST)
+    @RequestMapping(value = "/update-info", method = RequestMethod.GET)
     public String updateInfo(@RequestParam(name = "email") String email,
                              @RequestParam(name = "phone") String phone,
                              @RequestHeader(name = "acc") String acceptHeader) {
